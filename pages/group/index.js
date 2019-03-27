@@ -1,16 +1,21 @@
 import { Query } from 'react-apollo';
 import List, {
-  ListItem, ListItemText, ListDivider, ListItemGraphic,
+  ListDivider,
 } from '@material/react-list';
 import gql from 'graphql-tag';
 import { shape } from 'prop-types';
 import { withRouter } from 'next/router';
-import { Headline5, Body1 } from '@material/react-typography';
 import '@material/react-typography/dist/typography.css';
 import { Grid } from '@material/react-layout-grid';
 import '@material/react-layout-grid/dist/layout-grid.css';
 import MaterialIcon from '@material/react-material-icon';
 import ContentLoader from 'react-content-loader';
+import ListItemTextStyled from './styled/ListItemTextStyled';
+import SubgroupInfoStyled from './styled/SubgroupInfoStyled';
+import SubgroupDescriptionStyled from './styled/SubgroupDescriptionStyled';
+import ListItemGraphicStyled from './styled/ListItemGraphicStyled';
+import ListItemStyled from './styled/ListItemStyled';
+import GroupTitleStyled from './styled/GroupTitleStyled';
 
 const groupsQuery = gql`
   query GetGroup($groupID: ID!) {
@@ -63,35 +68,33 @@ const Group = ({ router }) => (
       return (
         <>
           <Grid>
-            <Headline5 className="group-title">
+            <GroupTitleStyled>
               {data.group.title}
               {' '}
 (
               {data.group.description}
 )
-            </Headline5>
+            </GroupTitleStyled>
             {
             data.group.subgroups.map(subgroup => (
               <div key={subgroup.id}>
-                <div className="subgroup-info">
+                <SubgroupInfoStyled>
                   <img src={subgroup.image_link} alt={subgroup.name} />
-                  <Body1 className="subgroup-description" tag="span">
+                  <SubgroupDescriptionStyled tag="span">
 Name:
                     {' '}
                     {subgroup.name}
-
-                  </Body1>
-                </div>
+                  </SubgroupDescriptionStyled>
+                </SubgroupInfoStyled>
                 <List>
                   {subgroup.algorithms.map(algorithm => (
                     <div key={algorithm.id}>
-                      <ListItem className="algorithms-list-item">
-                        <ListItemText
-                          className="list-text"
+                      <ListItemStyled>
+                        <ListItemTextStyled
                           primaryText={algorithm.algorithm}
                         />
-                        <ListItemGraphic className={`favorite ${process.browser ? 'favorite--active' : ''}`} onClick={() => { console.log(1); }} graphic={<MaterialIcon icon="favorite" hasRipple />} />
-                      </ListItem>
+                        <ListItemGraphicStyled onClick={() => { console.log(1); }} graphic={<MaterialIcon icon="favorite" hasRipple />} />
+                      </ListItemStyled>
                       <ListDivider />
                     </div>
                   ))}
@@ -100,44 +103,6 @@ Name:
             ))
           }
           </Grid>
-          <style jsx global>
-            {`
-              .list-text {
-                white-space: normal;
-              }
-
-              .subgroup-info {
-                display: flex;
-                margin-top: 30px;
-              }
-
-              .subgroup-info img {
-                width: 100px;
-                height: 100px;
-                margin-right: 20px;
-              }
-
-              .favorite--active {
-                color: red;
-              }
-
-              .algorithms-list-item {
-                justify-content: space-between;
-              }
-
-              .favorite {
-                margin-right: 0;
-              }
-
-              .group-title {
-                margin: 9px 0 0;
-              }
-
-              .subgroup-description {
-                margin: 0;
-              }
-            `}
-          </style>
         </>
       );
     }}

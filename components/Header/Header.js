@@ -2,8 +2,7 @@ import List, { ListItem, ListItemText } from '@material/react-list';
 import dynamic from 'next/dynamic';
 import Router from 'next/router';
 import { useState, useCallback } from 'react';
-import TopAppBar, {
-  TopAppBarIcon,
+import {
   TopAppBarRow,
   TopAppBarSection,
   TopAppBarTitle,
@@ -12,33 +11,40 @@ import '@material/react-list/dist/list.css';
 import MaterialIcon from '@material/react-material-icon';
 import '@material/react-material-icon/dist/material-icon.css';
 import '@material/react-drawer/dist/drawer.css';
-
+import TopAppBarStyled from './styled/TopAppBarStyled';
+import TopAppBarIconStyled from './styled/TopAppBarIconStyled';
 
 const DynamicDrawer = dynamic(() => import('@material/react-drawer'), {
   ssr: false,
   loading: () => null,
 });
 
-const Header = () => {
+const useDrawer = () => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const openDrawer = useCallback(() => { setDrawerIsOpen(true); }, []);
   const closeDrawer = useCallback(() => { setDrawerIsOpen(false); }, []);
+
+  return [drawerIsOpen, openDrawer, closeDrawer];
+};
+
+const Header = () => {
+  const [drawerIsOpen, openDrawer, closeDrawer] = useDrawer();
   const goToSteps = useCallback(() => { Router.push('/'); closeDrawer(); }, [closeDrawer]);
 
   return (
     <>
-      <TopAppBar className="top-app-bar">
+      <TopAppBarStyled>
         <TopAppBarRow>
           <TopAppBarSection align="start">
-            <TopAppBarIcon navIcon tabIndex={0} className="hamburger">
+            <TopAppBarIconStyled navIcon tabIndex={0}>
               <MaterialIcon hasRipple icon="menu" onClick={openDrawer} />
-            </TopAppBarIcon>
+            </TopAppBarIconStyled>
             <TopAppBarTitle>
           Fridrich CFOP
             </TopAppBarTitle>
           </TopAppBarSection>
         </TopAppBarRow>
-      </TopAppBar>
+      </TopAppBarStyled>
       <DynamicDrawer
         modal
         open={drawerIsOpen}
@@ -59,19 +65,6 @@ const Header = () => {
           </ListItem>
         </List>
       </DynamicDrawer>
-      <style jsx global>
-        {`
-          .top-app-bar {
-            background-color: #fff;
-            color: #212121;
-            border-bottom: 1px solid #E4E4E4;
-          }
-
-          .hamburger {
-            color: #212121 !important;
-          }
-        `}
-      </style>
     </>
   );
 };

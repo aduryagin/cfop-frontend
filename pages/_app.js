@@ -2,6 +2,7 @@ import React, { createContext } from 'react';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
 import { func, shape } from 'prop-types';
+import { createGlobalStyle } from 'styled-components';
 import { ApolloProvider } from 'react-apollo';
 import {
   TopAppBarFixedAdjust,
@@ -9,10 +10,16 @@ import {
 import '@material/react-top-app-bar/dist/top-app-bar.css';
 import withApolloClient from '../lib/with-apollo-client';
 import Preloader from '../components/Preloader';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import '@material/react-layout-grid/dist/layout-grid.css';
 
 export const ApplicationContext = createContext({ favorites: [] });
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+  }
+`;
 
 class MyApp extends App {
   static contextType = ApplicationContext;
@@ -27,15 +34,7 @@ class MyApp extends App {
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           </Head>
-
-          <style jsx global>
-            {`
-              body {
-                margin: 0;
-              }
-            `}
-          </style>
-
+          <GlobalStyle />
           <Header />
           <TopAppBarFixedAdjust>
             <Preloader />
