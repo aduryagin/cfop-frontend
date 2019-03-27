@@ -1,8 +1,11 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
+  "plugins": ["react-hooks"],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }

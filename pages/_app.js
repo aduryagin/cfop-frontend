@@ -1,92 +1,51 @@
-import React, { useState, useCallback } from 'react';
-import { Container } from 'next/app';
+import React, { createContext } from 'react';
+import App, { Container } from 'next/app';
 import Head from 'next/head';
-import dynamic from 'next/dynamic';
-
-import { node, shape } from 'prop-types';
-
+import { func, shape } from 'prop-types';
 import { ApolloProvider } from 'react-apollo';
-
-import TopAppBar, {
+import {
   TopAppBarFixedAdjust,
-  TopAppBarIcon,
-  TopAppBarRow,
-  TopAppBarSection,
-  TopAppBarTitle,
 } from '@material/react-top-app-bar';
 import '@material/react-top-app-bar/dist/top-app-bar.css';
-
-import MaterialIcon from '@material/react-material-icon';
-import '@material/react-material-icon/dist/material-icon.css';
-
-import '@material/react-drawer/dist/drawer.css';
-
-import List, { ListItem, ListItemText } from '@material/react-list';
 import withApolloClient from '../lib/with-apollo-client';
-import '@material/react-list/dist/list.css';
+import Preloader from '../components/Preloader';
+import Header from '../components/Header';
+import '@material/react-layout-grid/dist/layout-grid.css';
 
-const DynamicDrawer = dynamic(() => import('@material/react-drawer'), {
-  ssr: false,
-});
+export const ApplicationContext = createContext({ favorites: [] });
 
-const MyApp = ({ Component, pageProps, apolloClient }) => {
-  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
-  const openDrawer = useCallback(() => setDrawerIsOpen(true), [setDrawerIsOpen]);
-  const closeDrawer = useCallback(() => setDrawerIsOpen(false), [setDrawerIsOpen]);
+class MyApp extends App {
+  static contextType = ApplicationContext;
 
-  return (
-    <Container>
-      <ApolloProvider client={apolloClient}>
-        <Head>
-          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        </Head>
+  render() {
+    const { apolloClient, Component, pageProps } = this.props;
 
-        <style jsx global>
-          {`
-            body { 
-              margin: 0;
-            }
-          `}
-        </style>
+    return (
+      <Container>
+        <ApolloProvider client={apolloClient}>
+          <Head>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          </Head>
 
-        <TopAppBar>
-          <TopAppBarRow>
-            <TopAppBarSection align="start">
-              <TopAppBarIcon navIcon tabIndex={0}>
-                <MaterialIcon hasRipple icon="menu" onClick={openDrawer} />
-              </TopAppBarIcon>
-              <TopAppBarTitle>Fridrich CFOP</TopAppBarTitle>
-            </TopAppBarSection>
-          </TopAppBarRow>
-        </TopAppBar>
-        <DynamicDrawer
-          modal
-          open={drawerIsOpen}
-          onClose={closeDrawer}
-        >
-          <List>
-            <ListItem>
-              <ListItemText primaryText="Home" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primaryText="Favorites" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primaryText="Links" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primaryText="Github" />
-            </ListItem>
-          </List>
-        </DynamicDrawer>
-        <TopAppBarFixedAdjust>
-          <Component {...pageProps} />
-        </TopAppBarFixedAdjust>
-      </ApolloProvider>
-    </Container>
-  );
-};
+          <style jsx global>
+            {`
+              body {
+                margin: 0;
+              }
+            `}
+          </style>
+
+          <Header />
+          <TopAppBarFixedAdjust>
+            <Preloader />
+            <Component {...pageProps} />
+          </TopAppBarFixedAdjust>
+        </ApolloProvider>
+      </Container>
+    );
+  }
+}
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
@@ -99,7 +58,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 };
 
 MyApp.propTypes = {
-  Component: node.isRequired,
+  Component: func.isRequired,
   pageProps: shape({}).isRequired,
   apolloClient: shape({}).isRequired,
 };
