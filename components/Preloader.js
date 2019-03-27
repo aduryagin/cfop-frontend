@@ -3,7 +3,7 @@ import Router from 'next/router';
 import '@material/react-linear-progress/dist/linear-progress.css';
 import LinearProgress from '@material/react-linear-progress';
 
-const Preloader = () => {
+const usePreloader = () => {
   const [isClosed, setIsClosed] = useState(true);
   useEffect(() => {
     Router.events.on('routeChangeStart', () => {
@@ -16,6 +16,12 @@ const Preloader = () => {
       setIsClosed(true);
     });
   }, []);
+
+  return isClosed;
+};
+
+const Preloader = () => {
+  const isClosed = usePreloader();
 
   return (
     <LinearProgress
