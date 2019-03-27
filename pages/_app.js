@@ -8,7 +8,7 @@ import {
   TopAppBarFixedAdjust,
 } from '@material/react-top-app-bar';
 import '@material/react-top-app-bar/dist/top-app-bar.css';
-import withApolloClient from '../lib/with-apollo-client';
+import withApolloClient from '../lib/withApolloClient';
 import Preloader from '../components/Preloader';
 import Header from '../components/Header/Header';
 import '@material/react-layout-grid/dist/layout-grid.css';
