@@ -7,7 +7,6 @@
     "start": "next start",
     "lint": "eslint ."
   },
-  "license": "MIT",
   "dependencies": {
     "@material/react-drawer": "^0.11.0",
     "@material/react-layout-grid": "^0.11.0",
@@ -24,11 +23,13 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-lodash-fp": "^2.2.0-a1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.5.1",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
     "isomorphic-unfetch": "^3.0.0",
+    "lodash": "^4.17.11",
     "next": "^8.0.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
