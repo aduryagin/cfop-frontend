@@ -2,7 +2,6 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { shape } from 'prop-types';
 import { withRouter } from 'next/router';
-import '@material/react-typography/dist/typography.css';
 import ListLoader from '../../components/ListLoader';
 import AlgorithmsList from '../../components/AlgorithmsList/AlgorithmsList';
 

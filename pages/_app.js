@@ -12,6 +12,7 @@ import withApolloClient from '../lib/withApolloClient';
 import Preloader from '../components/Preloader';
 import Header from '../components/Header/Header';
 import '@material/react-layout-grid/dist/layout-grid.css';
+import '@material/react-typography/dist/typography.css';
 
 export const ApplicationContext = createContext({ favorites: [] });
 
