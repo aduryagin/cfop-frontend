@@ -14,7 +14,7 @@ import '@material/react-drawer/dist/drawer.css';
 import TopAppBarStyled from './styled/TopAppBarStyled';
 import TopAppBarIconStyled from './styled/TopAppBarIconStyled';
 
-const DynamicDrawer = dynamic(() => import('@material/react-drawer'), {
+const DrawerDynamic = dynamic(() => import('@material/react-drawer'), {
   ssr: false,
   loading: () => null,
 });
@@ -45,7 +45,7 @@ const Header = () => {
           </TopAppBarSection>
         </TopAppBarRow>
       </TopAppBarStyled>
-      <DynamicDrawer
+      <DrawerDynamic
         modal
         open={drawerIsOpen}
         onClose={closeDrawer}
@@ -64,7 +64,7 @@ const Header = () => {
             <ListItemText primaryText="Github" />
           </ListItem>
         </List>
-      </DynamicDrawer>
+      </DrawerDynamic>
     </>
   );
 };

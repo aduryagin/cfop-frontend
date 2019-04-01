@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { shape } from 'prop-types';
 import { withRouter } from 'next/router';
 import ListLoader from '../../components/ListLoader';
-import AlgorithmsList from '../../components/AlgorithmsList/AlgorithmsList';
+import AlgorithmsListWrapper from '../../components/AlgorithmsListWrapper/AlgorithmsListWrapper';
 
 const groupsQuery = gql`
   query GetGroup($groupID: ID!) {
@@ -37,7 +37,7 @@ const Group = ({ router }) => (
       }
 
       return (
-        <AlgorithmsList data={data} />
+        <AlgorithmsListWrapper data={data} />
       );
     }}
   </Query>
