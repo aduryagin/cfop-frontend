@@ -30,6 +30,7 @@ const useDrawer = () => {
 const Header = () => {
   const [drawerIsOpen, openDrawer, closeDrawer] = useDrawer();
   const goToSteps = useCallback(() => { Router.push('/'); closeDrawer(); }, [closeDrawer]);
+  const goToFavorites = useCallback(() => { Router.push('/favorites'); closeDrawer(); }, [closeDrawer]);
 
   return (
     <>
@@ -54,7 +55,7 @@ const Header = () => {
           <ListItem onClick={goToSteps}>
             <ListItemText primaryText="Steps" />
           </ListItem>
-          <ListItem>
+          <ListItem onClick={goToFavorites}>
             <ListItemText primaryText="Favorites" />
           </ListItem>
           <ListItem>

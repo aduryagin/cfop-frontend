@@ -5,18 +5,14 @@ import AlgorithmsList from '../components/AlgorithmsListWrapper/AlgorithmsListWr
 
 const favoritesQuery = gql`
   query GetFavorites($favoritesIDs: [ID!]!) {
-    favorites(favoritesIDs: $favoritesIDs) {
-      title
-      description
-      subgroups{
+    favorites(algorithmsIds: $favoritesIDs) {
+      id
+      name
+      image_link
+      algorithms {
         id
-        name
-        image_link
-        algorithms {
-          id
-          algorithm
-        }
-      }
+        algorithm
+     }
     }
   }
 `;
@@ -24,7 +20,8 @@ const favoritesQuery = gql`
 const Favorites = () => (
   <Query
     query={favoritesQuery}
-    variables={{ favoritesIDs: [] }}
+    ssr={false}
+    variables={{ favoritesIDs: process.browser ? JSON.parse(window.localStorage.getItem('favorites') || '[]') : [] }}
   >
     {({ loading, error, data }) => {
       if (error) return 'Error loading favorites';
@@ -35,7 +32,7 @@ const Favorites = () => (
       }
 
       return (
-        <AlgorithmsList data={data} />
+        <AlgorithmsList data={{ group: { subgroups: data.favorites } }} />
       );
     }}
   </Query>
