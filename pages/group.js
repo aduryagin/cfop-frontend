@@ -4,6 +4,7 @@ import { shape } from 'prop-types';
 import { withRouter } from 'next/router';
 import ListLoader from '../components/ListLoader';
 import AlgorithmsListWrapper from '../components/AlgorithmsListWrapper';
+import Title from '../components/Title';
 
 const groupsQuery = gql`
   query GetGroup($groupID: ID!) {
@@ -29,15 +30,28 @@ const Group = ({ router }) => (
     variables={{ groupID: router.query.id }}
   >
     {({ loading, error, data }) => {
-      if (error) return 'Error loading group';
+      if (error) {
+        return (
+          <>
+            <Title text="Error" />
+Error loading group
+          </>
+        );
+      }
       if (loading) {
         return (
-          <ListLoader />
+          <>
+            <Title text="Loading..." />
+            <ListLoader />
+          </>
         );
       }
 
       return (
-        <AlgorithmsListWrapper data={data} />
+        <>
+          <Title text={data.group.title} />
+          <AlgorithmsListWrapper data={data} />
+        </>
       );
     }}
   </Query>

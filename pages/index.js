@@ -1,11 +1,11 @@
 import List, { ListItem, ListItemText } from '@material/react-list';
 import { Query } from 'react-apollo';
-import Head from 'next/head';
 import gql from 'graphql-tag';
 import Router from 'next/router';
 import { useCallback } from 'react';
 import ContentLoader from 'react-content-loader';
 import '@material/react-list/dist/list.css';
+import Title from '../components/Title';
 
 const groupsQuery = gql`
   query {
@@ -22,9 +22,7 @@ function Home() {
 
   return (
     <>
-      <Head>
-        <title>My page title</title>
-      </Head>
+      <Title text="Steps" />
       <Query query={groupsQuery}>
         {({ loading, error, data }) => {
           if (error) return 'Error loading groups';

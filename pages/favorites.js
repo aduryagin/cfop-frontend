@@ -2,6 +2,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import ListLoader from '../components/ListLoader';
 import AlgorithmsList from '../components/AlgorithmsListWrapper';
+import Title from '../components/Title';
 
 const favoritesQuery = gql`
   query GetFavorites($favoritesIDs: [ID!]!) {
@@ -24,15 +25,28 @@ const Favorites = () => (
     variables={{ favoritesIDs: process.browser ? JSON.parse(window.localStorage.getItem('favorites') || '[]') : [] }}
   >
     {({ loading, error, data }) => {
-      if (error) return 'Error loading favorites';
+      if (error) {
+        return (
+          <>
+            <Title text="Error" />
+      Error loading favorites
+          </>
+        );
+      }
       if (loading) {
         return (
-          <ListLoader />
+          <>
+            <Title text="Loading..." />
+            <ListLoader />
+          </>
         );
       }
 
       return (
-        <AlgorithmsList data={{ group: { subgroups: data.favorites } }} />
+        <>
+          <Title text="Favorites" />
+          <AlgorithmsList data={{ group: { subgroups: data.favorites } }} />
+        </>
       );
     }}
   </Query>
