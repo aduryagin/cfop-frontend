@@ -30,6 +30,8 @@ const Header = () => {
   const [drawerIsOpen, openDrawer, closeDrawer] = useDrawer();
   const goToSteps = useCallback(() => { Router.push('/'); closeDrawer(); }, [closeDrawer]);
   const goToFavorites = useCallback(() => { Router.push('/favorites'); closeDrawer(); }, [closeDrawer]);
+  const goToLinks = useCallback(() => { Router.push('/links'); closeDrawer(); }, [closeDrawer]);
+  const goToGithub = useCallback(() => { Router.push('/github'); closeDrawer(); }, [closeDrawer]);
 
   return (
     <>
@@ -57,10 +59,10 @@ const Header = () => {
           <ListItem onClick={goToFavorites}>
             <ListItemText primaryText="Favorites" />
           </ListItem>
-          <ListItem>
+          <ListItem onClick={goToLinks}>
             <ListItemText primaryText="Links" />
           </ListItem>
-          <ListItem>
+          <ListItem onClick={goToGithub}>
             <ListItemText primaryText="Github" />
           </ListItem>
         </List>
