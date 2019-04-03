@@ -2,8 +2,8 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { shape } from 'prop-types';
 import { withRouter } from 'next/router';
-import ListLoader from '../../components/ListLoader';
-import AlgorithmsListWrapper from '../../components/AlgorithmsListWrapper/AlgorithmsListWrapper';
+import ListLoader from '../components/ListLoader';
+import AlgorithmsListWrapper from '../components/AlgorithmsListWrapper';
 
 const groupsQuery = gql`
   query GetGroup($groupID: ID!) {

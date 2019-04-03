@@ -6,12 +6,9 @@ import { memo } from 'react';
 import { Body1 } from '@material/react-typography';
 import isEqual from 'lodash/fp/isEqual';
 import dynamic from 'next/dynamic';
-import SubgroupInfoStyled from './styled/SubgroupInfoStyled';
-import SubgroupDescriptionStyled from './styled/SubgroupDescriptionStyled';
+import { GroupTitleStyled, SubgroupDescriptionStyled, SubgroupInfoStyled } from './style';
 
-import GroupTitleStyled from './styled/GroupTitleStyled';
-
-const AlgorithmsListDynamic = dynamic(() => import('./components/AlgorithmsList/AlgorithmsList'), {
+const AlgorithmsListDynamic = dynamic(() => import('./AlgorithmsList'), {
   ssr: false,
   loading: () => (
     <ContentLoader

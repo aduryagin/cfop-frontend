@@ -1,7 +1,7 @@
 import MaterialIcon from '@material/react-material-icon';
 import { useCallback, useState } from 'react';
 import { string } from 'prop-types';
-import ListItemGraphicStyled from './styled/ListItemGraphicStyled';
+import { ListItemGraphicStyled } from './style';
 
 const ListItemGraphic = ({ algorithmId }) => {
   const isInFavorites = useCallback((id) => {

@@ -2,9 +2,8 @@ import List, {
   ListDivider,
 } from '@material/react-list';
 import { shape } from 'prop-types';
-import ListItemGraphic from './components/ListItemGraphic';
-import ListItemStyled from './styled/ListItemStyled';
-import ListItemTextStyled from './styled/ListItemTextStyled';
+import ListItemGraphic from '../ListItemGraphic';
+import { ListItemTextStyled, ListItemStyled } from './style';
 
 const AlgorithmsList = ({ subgroup }) => (
   <List>

@@ -11,8 +11,7 @@ import '@material/react-list/dist/list.css';
 import MaterialIcon from '@material/react-material-icon';
 import '@material/react-material-icon/dist/material-icon.css';
 import '@material/react-drawer/dist/drawer.css';
-import TopAppBarStyled from './styled/TopAppBarStyled';
-import TopAppBarIconStyled from './styled/TopAppBarIconStyled';
+import { TopAppBarStyled, TopAppBarIconStyled } from './style';
 
 const DrawerDynamic = dynamic(() => import('@material/react-drawer'), {
   ssr: false,

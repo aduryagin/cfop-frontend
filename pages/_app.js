@@ -10,7 +10,7 @@ import {
 import '@material/react-top-app-bar/dist/top-app-bar.css';
 import withApolloClient from '../lib/withApolloClient';
 import Preloader from '../components/Preloader';
-import Header from '../components/Header/Header';
+import Header from '../components/Header';
 import '@material/react-layout-grid/dist/layout-grid.css';
 import '@material/react-typography/dist/typography.css';
 

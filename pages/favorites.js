@@ -1,7 +1,7 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import ListLoader from '../components/ListLoader';
-import AlgorithmsList from '../components/AlgorithmsListWrapper/AlgorithmsListWrapper';
+import AlgorithmsList from '../components/AlgorithmsListWrapper';
 
 const favoritesQuery = gql`
   query GetFavorites($favoritesIDs: [ID!]!) {
