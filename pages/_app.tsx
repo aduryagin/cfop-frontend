@@ -38,6 +38,7 @@ class MyApp extends App<MyAppProps> {
       <Container>
         <ApolloProvider client={apolloClient}>
           <Head>
+            <link rel="shortcut icon" href="/static/icons/icon-72x72.png" />
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           </Head>
