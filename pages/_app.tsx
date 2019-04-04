@@ -1,7 +1,6 @@
-import React, { createContext } from 'react';
+import React, { createContext, ComponentType } from 'react';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
-import { func, shape } from 'prop-types';
 import { createGlobalStyle } from 'styled-components';
 import { ApolloProvider } from 'react-apollo';
 import {
@@ -13,6 +12,7 @@ import Preloader from '../components/Preloader';
 import Header from '../components/Header';
 import '@material/react-layout-grid/dist/layout-grid.css';
 import '@material/react-typography/dist/typography.css';
+import { ApolloClient, NormalizedCacheObject } from 'apollo-boost';
 
 export const ApplicationContext = createContext({ favorites: [] });
 
@@ -22,7 +22,13 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-class MyApp extends App {
+type MyAppProps = {
+  apolloClient: ApolloClient<NormalizedCacheObject>,
+  Component: ComponentType,
+  pageProps: {}
+}
+
+class MyApp extends App<MyAppProps> {
   static contextType = ApplicationContext;
 
   render() {
@@ -55,12 +61,6 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
   }
 
   return { pageProps };
-};
-
-MyApp.propTypes = {
-  Component: func.isRequired,
-  pageProps: shape({}).isRequired,
-  apolloClient: shape({}).isRequired,
 };
 
 export default withApolloClient(MyApp);

@@ -17,7 +17,7 @@ const favoritesQuery = gql`
     }
   }
 `;
-
+ 
 const Favorites = () => (
   <Query
     query={favoritesQuery}

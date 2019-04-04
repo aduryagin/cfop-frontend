@@ -1,7 +1,7 @@
 import { Body1 } from '@material/react-typography';
 import { Grid } from '@material/react-layout-grid';
 import Title from '../components/Title';
-
+ 
 const Links = () => (
   <Grid>
     <Title text="Links" />

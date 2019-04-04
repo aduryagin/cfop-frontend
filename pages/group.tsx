@@ -1,7 +1,7 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { shape } from 'prop-types';
-import { withRouter } from 'next/router';
+import { NextFunctionComponent } from 'next';
+import { withRouter, RouterProps } from 'next/router'; 
 import ListLoader from '../components/ListLoader';
 import AlgorithmsListWrapper from '../components/AlgorithmsListWrapper';
 import Title from '../components/Title';
@@ -24,10 +24,12 @@ const groupsQuery = gql`
   }
 `;
 
-const Group = ({ router }) => (
+type GroupProps = { router: RouterProps<{ id: string }> }
+
+const Group: NextFunctionComponent<GroupProps> = ({ router }) => (
   <Query
     query={groupsQuery}
-    variables={{ groupID: router.query.id }}
+    variables={{ groupID: router.query ? router.query.id : 1 }}
   >
     {({ loading, error, data }) => {
       if (error) {
@@ -57,8 +59,4 @@ Error loading group
   </Query>
 );
 
-Group.propTypes = {
-  router: shape({}).isRequired,
-};
-
-export default withRouter(Group);
+export default withRouter(Group as any);

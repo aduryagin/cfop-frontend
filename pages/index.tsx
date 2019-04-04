@@ -34,7 +34,7 @@ function Home() {
                 speed={2}
                 primaryColor="#f3f3f3"
                 secondaryColor="#ecebeb"
-                uniquekey={1}
+                uniquekey={'1'}
                 style={{ width: 320 }}
               >
                 <rect x="15" y="25" rx="0" ry="0" width="140" height="16" />
@@ -51,7 +51,7 @@ function Home() {
 
           return (
             <List twoLine>
-              {data.groups.map(group => (
+              {data.groups.map((group: {id:number, description:string, title:string}) => (
                 <ListItem onClick={listItemClick} data-id={group.id} key={group.id}>
                   <ListItemText
                     secondaryText={group.description}

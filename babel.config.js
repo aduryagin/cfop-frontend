@@ -9,7 +9,7 @@ module.exports = (api) => {
           node: true,
         },
       },
-    }]],
+    }], '@zeit/next-typescript/babel'],
     plugins: [['styled-components', { ssr: true }]],
   };
 };
