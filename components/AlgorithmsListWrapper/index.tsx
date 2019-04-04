@@ -1,7 +1,7 @@
 import { Grid } from '@material/react-layout-grid';
 import '@material/react-layout-grid/dist/layout-grid.css';
-import { shape } from 'prop-types';
 import ContentLoader from 'react-content-loader';
+import { NextFunctionComponent } from 'next';
 import { memo } from 'react';
 import { Body1 } from '@material/react-typography';
 import isEqual from 'lodash/fp/isEqual';
@@ -17,7 +17,7 @@ const AlgorithmsListDynamic = dynamic(() => import('./AlgorithmsList'), {
       speed={2}
       primaryColor="#f3f3f3"
       secondaryColor="#ecebeb"
-      uniquekey={1}
+      uniquekey={'1'}
       style={{ width: 320 }}
     >
       <rect x="10" y="23" rx="0" ry="0" width="120" height="18" />
@@ -27,7 +27,7 @@ const AlgorithmsListDynamic = dynamic(() => import('./AlgorithmsList'), {
   ),
 });
 
-const AlgorithmsList = ({ data }) => (
+const AlgorithmsList: NextFunctionComponent<{ data: any }> = ({ data }) => (
   <Grid>
     {data.group.title && (
       <GroupTitleStyled>
@@ -39,7 +39,7 @@ const AlgorithmsList = ({ data }) => (
       </GroupTitleStyled>
     )}
     {
-            data.group.subgroups.length ? data.group.subgroups.map(subgroup => (
+            data.group.subgroups.length ? data.group.subgroups.map((subgroup: any) => (
               <div key={subgroup.id}>
                 <SubgroupInfoStyled>
                   <img src={subgroup.image_link} alt={subgroup.name} />
@@ -55,9 +55,5 @@ Name:
           }
   </Grid>
 );
-
-AlgorithmsList.propTypes = {
-  data: shape({}).isRequired,
-};
 
 export default memo(AlgorithmsList, isEqual);

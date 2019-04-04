@@ -18,7 +18,7 @@ const DrawerDynamic = dynamic(() => import('@material/react-drawer'), {
   loading: () => null,
 });
 
-const useDrawer = () => {
+const useDrawer = (): [boolean, (event?: any) => void, (event?: any) => void] => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const openDrawer = useCallback(() => { setDrawerIsOpen(true); }, []);
   const closeDrawer = useCallback(() => { setDrawerIsOpen(false); }, []);

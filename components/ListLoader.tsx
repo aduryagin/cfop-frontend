@@ -7,7 +7,7 @@ const ListLoader = () => (
     speed={2}
     primaryColor="#f3f3f3"
     secondaryColor="#ecebeb"
-    uniquekey={1}
+    uniquekey={'1'}
     style={{ width: 320 }}
   >
     <rect x="20" y="28" rx="0" ry="0" width="250" height="28" />

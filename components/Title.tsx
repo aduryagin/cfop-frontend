@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import { string } from 'prop-types';
+import { NextFunctionComponent } from 'next';
 
-const Title = ({ text }) => (
+const Title: NextFunctionComponent<{text: string}> = ({ text }) => (
   <Head>
     <title>
 CFOP -
@@ -10,9 +10,5 @@ CFOP -
     </title>
   </Head>
 );
-
-Title.propTypes = {
-  text: string.isRequired,
-};
 
 export default Title;

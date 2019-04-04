@@ -1,11 +1,17 @@
 import List, {
   ListDivider,
 } from '@material/react-list';
-import { shape } from 'prop-types';
 import ListItemGraphic from '../ListItemGraphic';
 import { ListItemTextStyled, ListItemStyled } from './style';
+import { NextFunctionComponent } from 'next';
 
-const AlgorithmsList = ({ subgroup }) => (
+type AlgorithmsListProps = {
+  subgroup: {
+    algorithms: Array<{id: number, algorithm: string}>
+  }
+}
+
+const AlgorithmsList: NextFunctionComponent<AlgorithmsListProps> = ({ subgroup }) => (
   <List>
     {subgroup.algorithms.map(algorithm => (
       <div key={algorithm.id}>
@@ -20,9 +26,5 @@ const AlgorithmsList = ({ subgroup }) => (
     ))}
   </List>
 );
-
-AlgorithmsList.propTypes = {
-  subgroup: shape({}).isRequired,
-};
 
 export default AlgorithmsList;

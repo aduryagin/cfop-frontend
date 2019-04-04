@@ -1,11 +1,14 @@
 import MaterialIcon from '@material/react-material-icon';
 import { useCallback, useState } from 'react';
-import { string } from 'prop-types';
+import { NextFunctionComponent } from 'next';
 import { ListItemGraphicStyled } from './style';
 
-const ListItemGraphic = ({ algorithmId }) => {
+type ListItemGraphicProps = { algorithmId: number }
+
+const ListItemGraphic: NextFunctionComponent<ListItemGraphicProps> = ({ algorithmId }) => {
   const isInFavorites = useCallback((id) => {
-    const favorites = JSON.parse(window.localStorage.getItem('favorites')) || [];
+    const favoritesInLocalStorage: string = window.localStorage.getItem('favorites') || '';
+    const favorites = JSON.parse(favoritesInLocalStorage) || [];
     const favoriteIndex = favorites.indexOf(id.toString());
 
     return favoriteIndex;
@@ -15,7 +18,8 @@ const ListItemGraphic = ({ algorithmId }) => {
 
   const toggleInLocalstorage = useCallback((event) => {
     const { id } = event.target.dataset;
-    const favorites = JSON.parse(window.localStorage.getItem('favorites')) || [];
+    const favoritesInLocalStorage: string = window.localStorage.getItem('favorites') || '';
+    const favorites = JSON.parse(favoritesInLocalStorage) || [];
     const favoriteIndex = isInFavorites(id);
 
     if (favoriteIndex !== -1) {
@@ -28,14 +32,10 @@ const ListItemGraphic = ({ algorithmId }) => {
 
     window.localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [isInFavorites]);
-
+ 
   return (
     <ListItemGraphicStyled active={isActive ? 1 : 0} onClick={toggleInLocalstorage} data-id={algorithmId} graphic={<MaterialIcon icon="favorite" hasRipple />} />
   );
-};
-
-ListItemGraphic.propTypes = {
-  algorithmId: string.isRequired,
 };
 
 export default ListItemGraphic;
