@@ -20,12 +20,13 @@ function create(initialState?: any) {
     });
   }
 
+  const apiURI: string = process.env.NODE_ENV !== 'production' ? 'http://localhost:3001/api' : 'https://cfop.aduryag.in/api';
   // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
   return new ApolloClient({
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: 'http://localhost:3000/api', // Server URL (must be absolute)
+      uri: apiURI, // Server URL (must be absolute)
     }),
     cache
   });
