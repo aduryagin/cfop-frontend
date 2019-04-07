@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { NextComponentType } from 'next';
 import Head from 'next/head';
-import { shape } from 'prop-types';
 import { getDataFromTree } from 'react-apollo';
 import initApollo from './initApollo';
 import { ApolloClient, NormalizedCacheObject } from 'apollo-boost';
@@ -10,10 +9,6 @@ export default (App: NextComponentType & any) => class Apollo extends React.Comp
   apolloClient: ApolloClient<NormalizedCacheObject>;
   
   static displayName = 'withApollo(App)'
-
-  static propTypes = {
-    apolloState: shape({}).isRequired,
-  }
 
   static async getInitialProps(ctx: any) {
     const { Component, router } = ctx;

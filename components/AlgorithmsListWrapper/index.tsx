@@ -8,7 +8,7 @@ import isEqual from 'lodash/fp/isEqual';
 import dynamic from 'next/dynamic';
 import { GroupTitleStyled, SubgroupDescriptionStyled, SubgroupInfoStyled } from './style';
 
-const AlgorithmsListDynamic = dynamic(() => import('./AlgorithmsList'), {
+const AlgorithmsListDynamic = dynamic(() => import('./components/AlgorithmsList'), {
   ssr: false,
   loading: () => (
     <ContentLoader
@@ -27,7 +27,9 @@ const AlgorithmsListDynamic = dynamic(() => import('./AlgorithmsList'), {
   ),
 });
 
-const AlgorithmsList: NextFunctionComponent<{ data: any }> = ({ data }) => (
+type AlgorithmsListWrapperProps = { data: any };
+
+const AlgorithmsListWrapper: NextFunctionComponent<AlgorithmsListWrapperProps> = ({ data }) => (
   <Grid>
     {data.group.title && (
       <GroupTitleStyled>
@@ -56,4 +58,4 @@ Name:
   </Grid>
 );
 
-export default memo(AlgorithmsList, isEqual);
+export default memo(AlgorithmsListWrapper, isEqual);

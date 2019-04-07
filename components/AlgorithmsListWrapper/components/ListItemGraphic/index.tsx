@@ -7,7 +7,7 @@ type ListItemGraphicProps = { algorithmId: number }
 
 const ListItemGraphic: NextFunctionComponent<ListItemGraphicProps> = ({ algorithmId }) => {
   const isInFavorites = useCallback((id) => {
-    const favoritesInLocalStorage: string = window.localStorage.getItem('favorites') || '';
+    const favoritesInLocalStorage: string = window.localStorage.getItem('favorites') || '[]';
     const favorites = JSON.parse(favoritesInLocalStorage) || [];
     const favoriteIndex = favorites.indexOf(id.toString());
 
@@ -18,7 +18,7 @@ const ListItemGraphic: NextFunctionComponent<ListItemGraphicProps> = ({ algorith
 
   const toggleInLocalstorage = useCallback((event) => {
     const { id } = event.target.dataset;
-    const favoritesInLocalStorage: string = window.localStorage.getItem('favorites') || '';
+    const favoritesInLocalStorage: string = window.localStorage.getItem('favorites') || '[]';
     const favorites = JSON.parse(favoritesInLocalStorage) || [];
     const favoriteIndex = isInFavorites(id);
 
