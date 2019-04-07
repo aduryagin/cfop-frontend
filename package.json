@@ -46,6 +46,7 @@
     "react-apollo-hooks": "^0.4.3",
     "react-content-loader": "^4.2.1",
     "react-dom": "^16.8.4",
+    "spdy": "^4.0.0",
     "styled-components": "^4.2.0"
   }
 }

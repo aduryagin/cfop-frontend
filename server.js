@@ -2,6 +2,8 @@ const { join } = require('path');
 const next = require('next');
 const proxyMiddleware = require('http-proxy-middleware');
 const express = require('express');
+const spdy = require('spdy');
+const fs = require('fs');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -33,11 +35,23 @@ app.prepare()
 
     server.all('*', (req, res) => handle(req, res));
 
-    server.listen(port, (err) => {
-      if (err) {
-        throw err;
-      }
+    // http2
 
-      console.log(`> Ready on port ${port}`);
-    });
+    const options = {
+      key: fs.readFileSync(`${__dirname}/certificate/privkey.pem`),
+      cert: fs.readFileSync(`${__dirname}/certificate/fullchain.pem`),
+      spdy: {
+        ssl: !dev,
+        plain: dev,
+      },
+    };
+
+    spdy.createServer(options, server)
+      .listen(3000, (err) => {
+        if (err) {
+          throw err;
+        }
+
+        console.log(`> Ready on port ${port}`);
+      });
   });
