@@ -5,6 +5,7 @@ The CFOP Method (Cross – F2L – OLL – PLL), sometimes known as the Fridrich
 * Next.js
 * React
 * Apollo
+* Workbox
 
 ## Development
 * npm i
