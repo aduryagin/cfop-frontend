@@ -3,7 +3,6 @@ const next = require('next');
 const proxyMiddleware = require('http-proxy-middleware');
 const express = require('express');
 const spdy = require('spdy');
-const fs = require('fs');
 
 const port = parseInt(process.env.PORT, 10) || 3001;
 const dev = process.env.NODE_ENV !== 'production';
@@ -38,8 +37,6 @@ app.prepare()
     // http2
 
     const options = {
-      key: fs.readFileSync(`${__dirname}/certificate/privkey.pem`),
-      cert: fs.readFileSync(`${__dirname}/certificate/fullchain.pem`),
       spdy: {
         ssl: !dev,
         plain: dev,
