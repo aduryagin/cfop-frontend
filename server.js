@@ -17,7 +17,7 @@ app.prepare()
     // api proxy
 
     server.use(proxyMiddleware('/api', {
-      target: 'http://localhost:8080',
+      target: dev ? 'http://localhost:8080' : 'http://api.cfop.aduryag.in',
       pathRewrite: {
         '^/api': '/query',
       },
