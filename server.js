@@ -38,11 +38,11 @@ app.prepare()
     // http2
 
     const options = {
-      key: fs.readFileSync(`${__dirname}/certificate/server.key`),
-      cert: fs.readFileSync(`${__dirname}/certificate/server.crt`),
+      // key: fs.readFileSync(`${__dirname}/certificate/server.key`),
+      // cert: fs.readFileSync(`${__dirname}/certificate/server.crt`),
       spdy: {
-        ssl: !dev,
-        plain: dev,
+        ssl: false,
+        plain: true,
       },
     };
 
