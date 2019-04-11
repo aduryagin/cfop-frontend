@@ -42,6 +42,8 @@ class MyApp extends App<MyAppProps> {
             <link rel="manifest" href="/static/manifest.webmanifest" />
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="theme-color" content="#ffffff" />
+            <meta name="description" content="The CFOP Method (Cross – F2L – OLL – PLL), sometimes known as the Fridrich method, is one of the most commonly used methods in speedsolving a 3×3×3 Rubik's Cube." />
           </Head>
           <GlobalStyle />
           <Header />

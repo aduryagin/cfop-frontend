@@ -50,9 +50,9 @@ function Home() {
           }
 
           return (
-            <List twoLine>
+            <List twoLine role="listbox">
               {data.groups.map((group: {id:number, description:string, title:string}) => (
-                <ListItem onClick={listItemClick} data-id={group.id} key={group.id}>
+                <ListItem role="option" onClick={listItemClick} data-id={group.id} key={group.id}>
                   <ListItemText
                     secondaryText={group.description}
                     primaryText={group.title}
