@@ -6,7 +6,6 @@ import {
 type ListItemGraphicStyledProps = {
   active: boolean | number,
   onClick: Function,
-  'data-id': number,
   graphic: any
 }
 
