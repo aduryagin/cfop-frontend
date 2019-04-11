@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     font-display: swap;
     font-weight: 400;
-    src: local('Roboto'), url(https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
+    src: local('Material Icons'), url(https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
   }
 
   .material-icons {
