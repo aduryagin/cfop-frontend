@@ -1,6 +1,6 @@
-import MaterialIcon from '@material/react-material-icon';
 import { useCallback, useState } from 'react';
 import { NextFunctionComponent } from 'next';
+import FavoriteIcon from './components/FavoriteIcon';
 import { ListItemGraphicStyled } from './style';
 
 type ListItemGraphicProps = { algorithmId: number }
@@ -17,7 +17,7 @@ const ListItemGraphic: NextFunctionComponent<ListItemGraphicProps> = ({ algorith
   const [isActive, setIsActive] = useState(isInFavorites(algorithmId) !== -1);
 
   const toggleInLocalstorage = useCallback((event) => {
-    const { id } = event.target.dataset;
+    const { id } = event.currentTarget.dataset;
     const favoritesInLocalStorage: string = window.localStorage.getItem('favorites') || '[]';
     const favorites = JSON.parse(favoritesInLocalStorage) || [];
     const favoriteIndex = isInFavorites(id);
@@ -34,7 +34,7 @@ const ListItemGraphic: NextFunctionComponent<ListItemGraphicProps> = ({ algorith
   }, [isInFavorites]);
  
   return (
-    <ListItemGraphicStyled active={isActive ? 1 : 0} onClick={toggleInLocalstorage} data-id={algorithmId} graphic={<MaterialIcon icon="favorite" hasRipple />} />
+    <ListItemGraphicStyled active={isActive ? 1 : 0} onClick={toggleInLocalstorage} graphic={<FavoriteIcon id={algorithmId} />} />
   );
 };
 

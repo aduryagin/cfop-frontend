@@ -8,9 +8,8 @@ import {
   TopAppBarTitle,
 } from '@material/react-top-app-bar';
 import '@material/react-list/dist/list.css';
-import MaterialIcon from '@material/react-material-icon';
-import '@material/react-material-icon/dist/material-icon.css';
 import '@material/react-drawer/dist/drawer.css';
+import MenuIcon from './components/MenuIcon';
 import { TopAppBarStyled, TopAppBarIconStyled } from './style';
 
 const DrawerDynamic = dynamic(() => import('@material/react-drawer'), {
@@ -39,7 +38,7 @@ const Header = () => {
         <TopAppBarRow>
           <TopAppBarSection align="start">
             <TopAppBarIconStyled navIcon tabIndex={0}>
-              <MaterialIcon hasRipple icon="menu" onClick={openDrawer} />
+              <MenuIcon onClick={openDrawer} />
             </TopAppBarIconStyled>
             <TopAppBarTitle>
           Fridrich CFOP
