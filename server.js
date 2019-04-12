@@ -38,6 +38,7 @@ app.prepare()
         throw err;
       }
 
+      // eslint-disable-next-line no-console
       console.log(`> Ready on port ${port}`);
     });
   });

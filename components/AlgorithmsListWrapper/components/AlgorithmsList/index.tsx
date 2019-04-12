@@ -12,7 +12,7 @@ type AlgorithmsListProps = {
 }
 
 const AlgorithmsList: NextFunctionComponent<AlgorithmsListProps> = ({ subgroup }) => (
-  <List>
+  <List role="listbox">
     {subgroup.algorithms.map(algorithm => (
       <div key={algorithm.id}>
         <ListItemStyled>

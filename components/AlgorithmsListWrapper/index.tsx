@@ -44,7 +44,7 @@ const AlgorithmsListWrapper: NextFunctionComponent<AlgorithmsListWrapperProps> =
             data.group.subgroups.length ? data.group.subgroups.map((subgroup: any) => (
               <div key={subgroup.id}>
                 <SubgroupInfoStyled>
-                  <img src={subgroup.image_link} alt={subgroup.name} />
+                  <img src={subgroup.image_link} alt={subgroup.name} loading="lazy" />
                   <SubgroupDescriptionStyled tag="span">
 Name:
                     {' '}
